@@ -61,9 +61,17 @@ regd_users.post("/login", (req, res) => {
   if (authenticatedUser(username, password)) {
 
     // TODO: issue jwt here
+    const payload = {
+      username: username
+    };
+
+    const token = jwt.sign(payload, 'SERVER_SECRET', {
+      expiresIn: 3600
+    });
 
     return res.status(200).json({
-      message: 'Customer successfuly logged in.'
+      message: 'Customer successfuly logged in.',
+      token: token
     });
   }
 
@@ -71,6 +79,10 @@ regd_users.post("/login", (req, res) => {
 
 // Add a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
+
+
+  console.log(req);
+
   //Write your code here
   return res.status(300).json({message: 'Yet to be implemented'});
 });
@@ -78,3 +90,5 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
 module.exports.authenticated = regd_users;
 module.exports.isValid = isValid;
 module.exports.users = users;
+
+

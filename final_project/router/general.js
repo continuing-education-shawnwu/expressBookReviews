@@ -4,15 +4,8 @@ let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
-// // Helper funciton for credential pattern validation
-// const credentialValidation = (un, pw) => {
-//   if (un && pw && un.trim() !== '' && pw.trim() !== '') {
-//     return true;
-//   }
 
-//   return false;
-// };
-
+// Username validation
 const usernameValidation = (username) => {
   if (!username) {
     return false;
@@ -26,6 +19,7 @@ const usernameValidation = (username) => {
 };
 
 
+// Password validation
 const passwordValidation = (password) => {
   if (!password) {
     return false;
@@ -37,6 +31,7 @@ const passwordValidation = (password) => {
 
   return true;
 };
+
 
 // Register new user
 public_users.post("/register", (req, res) => {
