@@ -7,7 +7,7 @@
 - [x] Task 4: Get all books based on Title - 2 Points
 - [x] Task 5: Get book Review. - 2 Points
 - [x] Task 6: Register New user – 3 Points
-- [ ] Task 7: Login as a Registered user - 3 Points
+- [x] Task 7: Login as a Registered user - 3 Points
 
 ## Registered Users:
 - [ ] Task 8: Add/Modify a book review. - 2 Points

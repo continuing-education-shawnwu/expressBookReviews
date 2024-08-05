@@ -4,26 +4,67 @@ let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
-// Helper funciton for credential pattern validation
-const credentialValidation = (un, pw) => {
-  if (un && pw && un.trim() !== '' && pw.trim() !== '') {
-    return true;
+// // Helper funciton for credential pattern validation
+// const credentialValidation = (un, pw) => {
+//   if (un && pw && un.trim() !== '' && pw.trim() !== '') {
+//     return true;
+//   }
+
+//   return false;
+// };
+
+const usernameValidation = (username) => {
+  if (!username) {
+    return false;
   }
 
-  return false;
+  if (username === '' || username.trim() === '') {
+    return false;
+  }
+
+  return true;
+};
+
+
+const passwordValidation = (password) => {
+  if (!password) {
+    return false;
+  }
+
+  if (password === '' || password.trim() === '') {
+    return false;
+  }
+
+  return true;
 };
 
 // Register new user
 public_users.post("/register", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  const valid = credentialValidation(username, password);
 
-  if (!valid) {
-    return res.status(300).json({
-      message: 'Credential Invalid. Credential value can not be empty.'
-    });
+  if (!usernameValidation(username)) {
+    return res.status(400).json({
+      message: 'Invalid username'
+    })
   }
+
+  if (!passwordValidation(password)) {
+    return res.status(400).json({
+      message: 'Invalid password'
+    })
+  }
+
+  if (!isValid(username)) {
+    return res.status(400).json({
+      message: 'Username already exist.'
+    })
+  }
+
+  users.push({
+    username: username,
+    password: password
+  });
 
   return res.status(200).json({
     message: 'Customer successfuly register. Now you can log in.'

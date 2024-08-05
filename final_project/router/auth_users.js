@@ -3,37 +3,70 @@ const jwt = require('jsonwebtoken');
 let books = require("./booksdb.js");
 const regd_users = express.Router();
 
-let users = [
-  {
-    username: 'demo',
-    password: 'demo123'
-  },
-  {
-    username: 'testmock',
-    password: 'testmock123'
+let users = [];
+
+// Check if user exist
+const isValid = (username) => {
+  const matched = users.filter((i) => i.username === username);
+
+  if (matched.length === 0) {
+    return true;
   }
-];
 
-const isValid = (username) => { //returns boolean
-//write code to check is the username is valid
+  return false;
 }
 
-const authenticatedUser = (username, password) => { //returns boolean
-//write code to check if username and password match the one we have in records.
+// Return matched user
+const matchedUser = (username) => {
+  const user = users.filter((i) => i.username === username);
+  if (user.length === 0) {
+    return {}
+  }
+
+  return user[0];
+};
+
+// User authentication
+const authenticatedUser = (username, password) => {
+  const matched = matchedUser(username);
+
+  if (matchedUser === {}) {
+    return false;
+  }
+
+  if (matched.username !== username) {
+    return false;
+  }
+
+  if (matched.password !== password) {
+    return false;
+  }
+
+  if (matched.username === username && matched.password === password) {
+    return true;
+  }
 }
 
-//only registered users can login
+// only registered users can login
 regd_users.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  if (username === 'demo' && password === 'demo123') {
+
+  if (!authenticatedUser(username, password)) {
+    return res.status(400).json({
+      message: 'Credential Invalid.'
+    });
+  }
+
+  if (authenticatedUser(username, password)) {
+
+    // TODO: issue jwt here
+
     return res.status(200).json({
       message: 'Customer successfuly logged in.'
     });
   }
 
-  //Write your code here
-  return res.status(300).json({message: 'Credential Invalid.'});
 });
 
 // Add a book review
