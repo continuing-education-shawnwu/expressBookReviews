@@ -51,15 +51,15 @@ const authenticatedUser = (username, password) => {
 regd_users.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const userAuthenticated = authenticatedUser(username, password);
 
-  if (!authenticatedUser(username, password)) {
+  if (!userAuthenticated) {
     return res.status(400).json({
       message: 'Credential Invalid.'
     });
   }
 
-  if (authenticatedUser(username, password)) {
-
+  if (userAuthenticated) {
     const payload = {
       username: username
     };
