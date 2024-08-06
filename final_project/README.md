@@ -14,7 +14,7 @@
 - [x] Task 9: Delete book review added by that particular user - 2 Points
 
 ## Node.JS program with 4 methods:
-- [ ] Use Async/Await or Promises with Axios in Node.js for all the four methods.
+**Use Async/Await or Promises with Axios in Node.js for all the four methods.**
 - [ ] Task 10: Get all books – Using async callback function – 2 Points
 - [ ] Task 11: Search by ISBN – Using Promises – 2 Points
 - [ ] Task 12: Search by Author – 2 Points
