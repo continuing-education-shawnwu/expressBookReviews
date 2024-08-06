@@ -10,8 +10,8 @@
 - [x] Task 7: Login as a Registered user - 3 Points
 
 ## Registered Users:
-- [ ] Task 8: Add/Modify a book review. - 2 Points
-- [ ] Task 9: Delete book review added by that particular user - 2 Points
+- [x] Task 8: Add/Modify a book review. - 2 Points
+- [x] Task 9: Delete book review added by that particular user - 2 Points
 
 ## Node.JS program with 4 methods:
 - [ ] Use Async/Await or Promises with Axios in Node.js for all the four methods.

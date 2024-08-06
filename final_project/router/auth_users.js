@@ -76,6 +76,7 @@ regd_users.post("/login", (req, res) => {
 
 });
 
+
 // Add a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
   const token = req.headers['authorization'].replace('Bearer ', '');
@@ -119,6 +120,44 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
   return res.status(201).json({
     message: `New review from ${user.username} added.`
   });
+});
+
+
+// Delete matching review from authenticated user based on isbn
+regd_users.delete("/auth/review/:isbn", (req, res) => {
+  const token = req.headers['authorization'].replace('Bearer ', '');
+  const isbn = req.params.isbn;
+  const book = books[isbn];
+  const user = {};
+
+  // Verify user token.
+  // If verificaiton failed return 403.
+  // If verificaiton pass, continute following procedures.
+  jwt.verify(token, 'SERVER_SECRET', (err, decoded) => {
+    if (err) {
+      return res.status(403).json({
+        message: 'Failed to authenticate.'
+      });
+    }
+
+    user.username = decoded.username;
+  })
+
+  // Check if review from user exist
+  // If review not exit return 401
+  // If review exist, continute following procedures.
+  if (!book.reviews[user.username]) {
+    return res.status(401).json({
+      message: `No review found from user [${user.username}] for title: [${book.title}].`
+    })
+  }
+
+  // Remove review from user
+  delete book.reviews[user.username];
+
+  return res.status(200).json({
+    message: `Review from user [${user.username}] for title: [${book.title}] removed successfully.`
+  })
 });
 
 module.exports.authenticated = regd_users;
