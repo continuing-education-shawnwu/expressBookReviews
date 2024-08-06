@@ -60,17 +60,16 @@ regd_users.post("/login", (req, res) => {
 
   if (authenticatedUser(username, password)) {
 
-    // TODO: issue jwt here
     const payload = {
       username: username
     };
 
     const token = jwt.sign(payload, 'SERVER_SECRET', {
-      expiresIn: 3600
+      expiresIn: '1h'
     });
 
     return res.status(200).json({
-      message: 'Customer successfuly logged in.',
+      message: `Customer ${username} successfuly logged in.`,
       token: token
     });
   }
@@ -79,12 +78,47 @@ regd_users.post("/login", (req, res) => {
 
 // Add a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
+  const token = req.headers['authorization'].replace('Bearer ', '');
+  const isbn = req.params.isbn;
+  const book = books[isbn];
+  const userReview = req.body.review;
+  const user = {};
 
+  // Verify user token.
+  // If verificaiton failed return 403.
+  // If verificaiton pass return continute following procedures.
+  jwt.verify(token, 'SERVER_SECRET', (err, decoded) => {
+    if (err) {
+      return res.status(403).json({
+        message: 'Failed to authenticate.'
+      });
+    }
 
-  console.log(req);
+    user.username = decoded.username;
+  })
 
-  //Write your code here
-  return res.status(300).json({message: 'Yet to be implemented'});
+  // Check if request body contain review payload.
+  if (userReview === undefined) {
+    return res.status(400).json({
+      message: 'Review cannot be empty.'
+    })
+  }
+
+  // Check if review from user exist, if exist, update existing review.
+  if (book.reviews[user.username] !== undefined) {
+    book.reviews[user.username] = userReview;
+
+    return res.status(201).json({
+      message: `Review from ${user.username} exsit, updated review with new changes`
+    })
+  }
+
+  // Add new review from user
+  book.reviews[user.username] = userReview;
+
+  return res.status(201).json({
+    message: `New review from ${user.username} added.`
+  });
 });
 
 module.exports.authenticated = regd_users;
