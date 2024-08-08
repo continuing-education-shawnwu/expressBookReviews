@@ -15,8 +15,8 @@
 
 ## Node.JS program with 4 methods:
 **Use Async/Await or Promises with Axios in Node.js for all the four methods.**
-- [ ] Task 10: Get all books – Using async callback function – 2 Points
-- [ ] Task 11: Search by ISBN – Using Promises – 2 Points
-- [ ] Task 12: Search by Author – 2 Points
-- [ ] Task 13: Search by Title - 2 Points
+- [x] Task 10: Get all books – Using async callback function – 2 Points
+- [x] Task 11: Search by ISBN – Using Promises – 2 Points
+- [x] Task 12: Search by Author – 2 Points
+- [x] Task 13: Search by Title - 2 Points
 - [ ] Task 14: Submission of Project GitHub Link - 2 Points

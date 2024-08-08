@@ -47,7 +47,7 @@ const authenticatedUser = (username, password) => {
   }
 }
 
-// only registered users can login
+// - [x] Task 7: Login as a Registered user - 3 Points
 regd_users.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -77,7 +77,7 @@ regd_users.post("/login", (req, res) => {
 });
 
 
-// Add a book review
+// - [x] Task 8: Add/Modify a book review. - 2 Points
 regd_users.put("/auth/review/:isbn", (req, res) => {
   const token = req.headers['authorization'].replace('Bearer ', '');
   const isbn = req.params.isbn;
@@ -123,7 +123,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
 });
 
 
-// Delete matching review from authenticated user based on isbn
+// - [x] Task 9: Delete book review added by that particular user - 2 Points
 regd_users.delete("/auth/review/:isbn", (req, res) => {
   const token = req.headers['authorization'].replace('Bearer ', '');
   const isbn = req.params.isbn;
