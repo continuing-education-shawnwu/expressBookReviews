@@ -1,5 +1,6 @@
 # Distribution / packaging
 node_modules
 **/*.sw?
+screenshots/
 
 

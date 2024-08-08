@@ -68,9 +68,15 @@ regd_users.post("/login", (req, res) => {
       expiresIn: '1h'
     });
 
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      maxAge: 3600000,
+    })
+
     return res.status(200).json({
       message: `Customer ${username} successfuly logged in.`,
-      token: token
     });
   }
 
@@ -118,7 +124,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
   book.reviews[user.username] = userReview;
 
   return res.status(201).json({
-    message: `New review from ${user.username} added.`
+message: `New review from user [${user.username}] for book with ISBN [${isbn}] added/updated.`
   });
 });
 
@@ -156,7 +162,7 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
   delete book.reviews[user.username];
 
   return res.status(200).json({
-    message: `Review from user [${user.username}] for title: [${book.title}] removed successfully.`
+    message: `Review from user [${user.username}] for title: [${book.title}] with ISBN [${isbn}] removed successfully.`
   })
 });
 

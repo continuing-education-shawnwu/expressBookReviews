@@ -1,7 +1,7 @@
 # Final Project: Back End Apps with Node.js and Express
 
 ## General users:
-- [x] Task 1: Get the book list available in the shop.- 2 Points
+- [x] [Task 1: Get the book list available in the shop.- 2 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/76d2c94f3f8f3add3ebbaffbbfd07d4350135b5a/final_project/router/general.js#L71)
 - [x] Task 2: Get the books based on ISBN.- 2 Points
 - [x] Task 3: Get all books by Author. -2 Points
 - [x] Task 4: Get all books based on Title - 2 Points
