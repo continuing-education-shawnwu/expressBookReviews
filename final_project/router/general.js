@@ -183,7 +183,8 @@ const searchByTitle = async (title, res) => {
     })
 };
 
-
+// Book search endpoint
+// Based on the query params type to invoke corresponding endpoint.
 public_users.get('/search', async function (req, res) {
   const type = req.query;
 
