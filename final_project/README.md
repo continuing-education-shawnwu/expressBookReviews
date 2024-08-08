@@ -5,7 +5,7 @@
 - [x] [Task 2: Get the books based on ISBN.- 2 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/57751f66fea32dae026ccd70583080551c532777/final_project/router/general.js#L77)
 - [x] [Task 3: Get all books by Author. -2 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/57751f66fea32dae026ccd70583080551c532777/final_project/router/general.js#L101)
 - [x] [Task 4: Get all books based on Title - 2 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/57751f66fea32dae026ccd70583080551c532777/final_project/router/general.js#L118)
-- [x] [Task 5: Get book Review. - 2 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/57751f66fea32dae026ccd70583080551c532777/final_project/router/general.js#L136)
+- [x] [Task 5: Get book Review. - 2 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/57751f66fea32dae026ccd70583080551c532777/final_project/router/general.js#L135)
 - [x] [Task 6: Register New user – 3 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/57751f66fea32dae026ccd70583080551c532777/final_project/router/general.js#L37)
 - [x] [Task 7: Login as a Registered user - 3 Points](https://github.com/continuing-education-shawnwu/expressBookReviews/blob/57751f66fea32dae026ccd70583080551c532777/final_project/router/auth_users.js#L50)
 
